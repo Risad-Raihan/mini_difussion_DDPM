@@ -21,7 +21,7 @@ class Config:
     timesteps = 1000  # T
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    data_path = "data/tinyhero/images"            # <— put your sprites here
+    data_path = "data/tinyhero"            # <— put your sprites here
     save_dir = "samples_ddpm"
     os.makedirs(save_dir, exist_ok=True)
 
@@ -33,7 +33,7 @@ config = Config()
 # ============================================================
 class TinyHeroDataset(Dataset):
     def __init__(self, root, transform=None):
-        self.paths = sorted(glob(os.path.join(root, "*")))
+        self.paths = sorted(glob(os.path.join(root, "*/*.png")))
         self.transform = transform
 
     def __len__(self):
